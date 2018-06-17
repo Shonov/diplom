@@ -1,0 +1,27 @@
+.line-bottom {
+  padding: 20px;
+  margin-bottom: 50px;
+  border-radius: 4px;
+  border-bottom: 4px solid #ddd;
+}
+#info-data {
+  #people img{
+    width: 212px;
+    height: 212px;
+    border: 5px solid #ecf0f1;
+    border-radius: 100%;
+    margin-bottom: 10px;
+  }
+  .slides li img {
+    height: 450px;
+  }
+  .list-inline-item span {
+    color: #f16528;
+  }
+}
+table .active {
+  background-color: #f2f2f2;
+  .table-tr td {
+    border-bottom: 1px solid #dee2e6;
+  }
+}

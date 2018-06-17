@@ -1,0 +1,17 @@
+.profile {
+  padding: 20px;
+  border: 1px solid;
+  margin-top: 30px;
+}
+#file {
+  input[type=file] {
+    display: none; /* Обязательно скрываем настоящий Input File */
+  }
+  span {
+    text-decoration: underline;
+  }
+
+}
+.margin-bottom {
+  margin-bottom: 40px;
+}

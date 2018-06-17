@@ -1,0 +1,276 @@
+/*--------------------------------*/
+/*           Default
+/*--------------------------------*/
+$color: #f16528;
+body {
+  font-family:'Open Sans', sans-serif;
+}
+.section-padding {
+  padding:50px 0 70px 0;
+  overflow:hidden;
+}
+section h2 {
+  color:#363636;
+  margin-bottom:50px;
+  margin-top:0;
+  text-transform:uppercase;
+  text-align:center;
+  font-weight:600;
+}
+section h5 {
+  color:#969695;
+  margin-bottom:10px;
+  margin-top:5px;
+  text-transform:uppercase;
+  text-align:center;
+  font-weight:600;
+}
+p {
+  line-height:26px;
+  color:#777;
+}
+/*--------------------------------*/
+/*           Navbar
+/*--------------------------------*/
+.bg-light {
+  background-color: unset !important;;
+}
+.navbar-toggle {
+  background: $color;
+  .icon-bar {
+    background: #fff;
+  }
+}
+.navbar-absolute-top {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  background-color:transparent !important;
+  border-color:transparent !important;
+}
+.nav-link, .nav-link .dropdown-toggle {
+  background: transparent;
+  text-transform:uppercase;
+  font-family: 'Lato', sans-serif;
+  font-weight:600;
+  letter-spacing:1px;
+  color:#fff;
+  &:hover, &:active{
+    color:$color;
+  }
+}
+.navbar ul li.active a {
+  color:$color;
+}
+.collapse::-webkit-scrollbar {
+  width: 5px;
+}
+.collapse::-webkit-scrollbar-thumb {
+  background: $color;
+  -webkit-box-shadow: inset 0 0 6px $color;
+}
+.title {
+  color: $color;
+}
+.works {
+  background: white;
+  top: 4px;
+  right: 3px;
+  padding: 14px 0;
+  color: black;
+  width: 13%;
+  border: none;
+}
+/*--------------------------------*/
+/*            #home
+/*--------------------------------*/
+#home {
+  min-height: 500px;
+  background: url('~@/assets/img/navbar.jpg') no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+
+  .intro-text {
+    padding-top: 150px;
+
+    h5 {
+      letter-spacing: 2px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    form  {
+      a {
+        padding: 14px 20px;
+        color: white;
+        background: $color;
+        border: none;
+        text-transform: uppercase;
+      }
+      .multiselect__tags {
+      padding: 7px 0;
+      border: none;
+      border-radius: 0;
+      .multiselect__select {
+        z-index: 100;
+        top: 5px;
+      }
+      .multiselect__single, .multiselect__input {
+        padding: 10px 0 0 5px;
+      }
+      .multiselect__option--highlight:after, .multiselect__option--highlight {
+        color: white;
+        background: $color;
+      }
+      .multiselect__option--selected.multiselect__option--highlight:after, .multiselect__option--selected.multiselect__option--highlight {
+        color: white;
+        background: #41b883;
+      }
+      .multiselect__option--selected {
+        background: #41b883;
+        color: white;
+        font-weight: 700;
+      }
+    }
+    }
+  }
+}
+/*--------------------------------*/
+/*      How our service works
+/*--------------------------------*/
+.service {
+  padding:10px;
+  margin:30px auto 0px auto;
+  h5 {
+    text-align:center;
+    font-size:16px;
+    color:#363636;
+    font-weight:700;
+    margin:20px auto 10px auto;
+  }
+  p {
+    color:#777;
+    text-align:center;
+  }
+}
+.service-circle {
+  margin: 0 auto;
+  border: 1px solid $color;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  padding: 41px 20px 20px 41px;
+  color: #fff;
+  img {
+    margin: -17px;
+  }
+}
+/*--------------------------------*/
+/*         Advantages
+/*--------------------------------*/
+.advantages {
+  text-align: center;
+  background-size: cover;
+  background: #e9ecef center;
+  h5 {
+    color: $color;
+  }
+  i {
+    color: $color;
+    text-align: center;
+  }
+}
+/*--------------------------------*/
+/*           Categories
+/*--------------------------------*/
+.categories {
+  text-align: center;
+  background-size: cover;
+  h5 {
+    color: $color;
+  }
+  ul {
+    text-align: left;
+    list-style: none;
+  }
+  ul li span {
+    color: $color;;
+  }
+}
+/*--------------------------------*/
+/*           Footer
+/*--------------------------------*/
+.footer {
+  background:#282727;
+  padding:30px 0;
+}
+.footer-text {
+  color:#c2c0c0;
+  text-align:center;
+}
+/*--------------------------------*/
+/*           Other
+/*--------------------------------*/
+.maps {
+  height: 500px;
+}
+.link {
+  color: $color;
+  border: 2px solid;
+  font-weight: 600;
+  padding: 4px 20px 0 20px;
+  margin: 0 0 5px 10px;
+  &:hover {
+    color: $color;
+  }
+}
+.margin-title {
+  color: black;
+  margin-top: 50px;
+}
+.right{
+  position: absolute;
+  padding-top: 25%;
+  right: -15%;
+}
+
+/*--------------------------------*/
+/*           Adaptive
+/*--------------------------------*/
+@media only screen and (min-width: 992px) and (max-width: 1200px) {}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  //#home .intro-text form label{ width:25%; }
+  //#home .intro-text form a { width:25%; }
+  //.multiselect { width:50%; }
+  .right {
+    position: absolute;
+    padding-top: 53%;
+    transform: rotate(90deg);
+    right: 18%;
+  };
+}
+@media only screen and (max-width: 575px) {
+  #home .intro-text form label{ width:25%;}
+  #home .intro-text form a { width: 26%; }
+  .multiselect { width:50%;}
+  .right {
+    position: absolute;
+    padding-top: 70%;
+    transform: rotate(90deg);
+    right: 2%;
+  };
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  #home .intro-text form label{ width:25%; }
+  #home .intro-text form a { width:25%; }
+  .multiselect { width:50%;}
+  .right {
+    position: absolute;
+    padding-top: 70%;
+    transform: rotate(90deg);
+    right: 8%;
+  };
+}
