@@ -1,65 +1,53 @@
 <template>
     <div class="container">
-        <b-container fluid>
-            <b-row>
-                <b-col md="6" class="my-1">
-                    <b-form-group horizontal label="Поиск" class="mb-0">
-                        <b-input-group>
-                            <b-form-input v-model="filter" placeholder="Введите для поиска" ></b-form-input>
-                            <b-input-group-append>
-                                <b-btn :disabled="!filter" @click="filter = ''">Сбросить</b-btn>
-                            </b-input-group-append>
-                        </b-input-group>
-                    </b-form-group>
-                </b-col>
-                <b-col md="6" class="my-1">
-                    <b-form-group horizontal label="Сортировать по" class="mb-0">
-                        <b-input-group>
-                            <b-form-select v-model="sortBy" :options="sortOptions">
-                                <option slot="first" :value="null">-- Не выбрано --</option>
-                            </b-form-select>
-                            <b-form-select :disabled="!sortBy" v-model="sortDesc" slot="append">
-                                <option :value="false">По убыванию</option>
-                                <option :value="true">По возрастанию</option>
-                            </b-form-select>
-                        </b-input-group>
-                    </b-form-group>
-                </b-col>
-                <b-col md="6" class="my-1">
-                    <b-form-group horizontal label="Результатов на странице" class="mb-0">
-                        <b-form-select :options="pageOptions" v-model="perPage" ></b-form-select>
-                    </b-form-group>
-                </b-col>
-            </b-row>
-        </b-container>
-
-        <b-table class="table table-striped table-bordered"
-                 :fields="fields"
-                 :items="orders"
-                 :current-page="currentPage"
-                 :per-page="perPage"
-                 :filter="filter"
-                 :sort-by.sync="sortBy"
-                 :sort-desc.sync="sortDesc"
-                 :sort-direction="sortDirection"
-                 @filtered="onFiltered"
-                 caption-top>
-            <template slot="table-caption" v-if="!role || role !== 'Исполнитель'">
-                <router-link :to="{name: 'order-create'}">Создать заказ</router-link>
-            </template>
-            <template slot="title" slot-scope="row">
-                <router-link :to="{name:'order-view', params: { id: row.item.id }}"> {{ row.item.title }}</router-link>
-            </template>
-            <template slot="description" slot-scope="row">
-                {{ row.item.description.substr(0, 200)  }}...
-            </template>
-            <template slot="budget_scale_id" slot-scope="row" v-if="">
-                {{ row.item.budget_scale_id }} руб.
-            </template>
-            <template slot="address" slot-scope="row">
-                {{ row.item.address }}
-            </template>
-        </b-table>
+        <div class="card order-table">
+            <div class="card-header">
+                <b-container fluid>
+                    <b-row>
+                        <b-col md="6" class="my-1">
+                            <b-form-group horizontal label="Поиск" class="mb-0">
+                                <b-input-group>
+                                    <b-form-input v-model="filter" placeholder="Введите для поиска" ></b-form-input>
+                                    <b-input-group-append>
+                                        <b-btn :disabled="!filter" @click="filter = ''">Сбросить</b-btn>
+                                    </b-input-group-append>
+                                </b-input-group>
+                            </b-form-group>
+                        </b-col>
+                        <b-col md="6" class="my-1 text-right">
+                            <b-form-select :options="pageOptions" class="col-sm-3" v-model="perPage" ></b-form-select>
+                        </b-col>
+                    </b-row>
+                </b-container>
+            </div>
+            <b-table class="table table-striped table-bordered"
+                     :fields="fields"
+                     :items="orders"
+                     :current-page="currentPage"
+                     :per-page="perPage"
+                     :filter="filter"
+                     :sort-by.sync="sortBy"
+                     :sort-desc.sync="sortDesc"
+                     :sort-direction="sortDirection"
+                     @filtered="onFiltered"
+                     caption-top>
+                <template slot="table-caption" v-if="!role || role !== 'Исполнитель'">
+                    <router-link :to="{name: 'order-create'}">Создать заказ</router-link>
+                </template>
+                <template slot="title" slot-scope="row">
+                    <router-link :to="{name:'order-view', params: { id: row.item.id }}"> {{ row.item.title }}</router-link>
+                </template>
+                <template slot="description" slot-scope="row">
+                    {{ row.item.description.substr(0, 200)  }}...
+                </template>
+                <template slot="budget_scale_id" slot-scope="row" v-if="">
+                    {{ row.item.budget_scale_id }} руб.
+                </template>
+                <template slot="address" slot-scope="row">
+                    {{ row.item.address }}
+                </template>
+            </b-table>
+        </div>
         <b-row>
             <b-col md="6" class="my-1">
                 <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" ></b-pagination>
@@ -117,3 +105,8 @@
         }),
     }
 </script>
+<style>
+    .order-table {
+        margin-top: 50px;
+    }
+</style>

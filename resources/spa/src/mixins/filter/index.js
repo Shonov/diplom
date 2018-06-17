@@ -1,8 +1,8 @@
 export default {
     data: () => ({
         currentPage: 1,
-        perPage: 10,
-        pageOptions: [ 10, 20, 50 ],
+        perPage: 5,
+        pageOptions: [ 5, 10, 20 ],
         sortBy: null,
         sortDesc: true,
         sortDirection: 'asc',

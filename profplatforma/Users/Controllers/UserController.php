@@ -32,17 +32,10 @@ class UserController extends Controller
         $credentials['password'] = bcrypt($credentials['password']);
         $user = User::create($credentials);
 
-        if ($user->photo) {
-            $user->photo;
-        }
         if ($user && $request->hasFile('photo')) {
-//            dd($request->hasFile('photo'));
             $image = $request->photo->store('public');
-//            $image_resize = Image::make($request->photo);
-//            Storage::put('\public\resize\\'. substr($image, 7), (string) $image_resize->resize(212, 212)->encode() );
             $user->photo = $image;
             $user->save();
-
         }
 
         if($user &&  $role = $request->get('role')) {
@@ -131,8 +124,6 @@ class UserController extends Controller
       return [
             'user' => Auth::user(),
             'modules' => Auth::user()->modules,
-//            'orders' => Auth::user()->orders,
-//            'requests' => Auth::user()->requests,
         ];
     }
 }
