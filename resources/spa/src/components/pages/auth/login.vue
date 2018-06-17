@@ -1,15 +1,36 @@
 <template>
-    <div class="login-wrapper border border-light">
-        <div class="alert alert-danger" v-if="error">{{ error }}</div>
-        <form class="form-signin" @submit.prevent="sign_user_in" method="post">
-            <h2 class="form-signin-heading">Авторизация</h2>
-            <label for="login" class="sr-only">Логин</label>
-                <input v-model="login" type="text" id="login" name="login" class="form-control" placeholder="Введите логин" required autofocus>
-            <label for="password" class="sr-only">Пароль</label>
-                <input v-model="password" name='password' type="password" id="password" class="form-control" placeholder="Введите пароль" required>
-            <button class="btn btn-lg btn-primary btn-block"  type="submit" :disabled="is_disabled">Sign in</button>
-        </form>
+    <div>
+        <div class="image"></div>
+        <div class="container d-flex flex-column">
+            <div class="row my-auto">
+                <div id="blur" class="col-lg-5 col-md-10 col-sm-12 mx-auto my-5 py-5">
+                    <div class="card">
+                        <div class="card-header bg-transparent px-5">
+                            <h2>Авторизация</h2>
+                        </div>
+                        <div class="card-block pt-4 px-5 pb-1">
+                            <form @submit.prevent="sign_user_in" method="post">
+                                <div class="form-group">
+                                    <label class="text-secondary" for="login">
+                                        <small>Почта/Телефон</small>
+                                    </label>
+                                    <input v-model="login"  class="form-control form-control-lg rounded-0" id="login" type="text" placeholder="Почта или телефон">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="text-secondary" for="password">
+                                        <small>Пароль</small>
+                                    </label>
+                                    <input v-model="password" class="form-control form-control-lg rounded-0" id="password" type="password" placeholder="Пароль">
+                                </div>
+                                <button class="btn btn-lg btn-warning mb-4 w-100 rounded-0" type="submit">Войти</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -27,7 +48,7 @@
         computed: {
             is_disabled() {
                 // return this.errors
-            }
+            },
         },
         methods: {
             sign_user_in() {
@@ -38,30 +59,18 @@
 </script>
 
 <style lang="css">
-    .form-signin {
-        max-width: 330px;
-        padding: 10% 15px;
-        margin: 0 auto;
+    .image {
+        min-height: 100vh;
+        background: url('~@/assets/img/city.jpg') no-repeat center center;
+        background-size: cover;
+        z-index: 0;
+        filter: blur(4px);
     }
-    .form-signin .form-signin-heading,
-        .form-signin .form-control {
-        position: relative;
-        height: auto;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        padding: 10px;
-        font-size: 16px;
-    }
-    .form-signin .form-control:focus {
-        z-index: 2;
-    }
-    .form-signin input[type="text"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-    }
-    .form-signin input[type="password"] {
-        margin-bottom: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+    #blur {
+        position: absolute;
+        top: 20%;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 </style>

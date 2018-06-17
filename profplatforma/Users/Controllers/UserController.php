@@ -33,9 +33,13 @@ class UserController extends Controller
         $user = User::create($credentials);
 
         if ($user && $request->hasFile('photo')) {
-            $image = $request->photo->store('public');
-            $user->photo = $image;
+            $image = $request->photo;
+            $image_resize = Image::make($image)->resize(212, 212);
+            $image_resize->store('public');
+//            Storage::put('\public\resize\\'. substr($image, 7), (string) $image_resize->resize(212, 212)->encode() );
+            $user->photo = $image_resize;
             $user->save();
+
         }
 
         if($user &&  $role = $request->get('role')) {

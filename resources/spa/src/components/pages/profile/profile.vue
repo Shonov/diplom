@@ -1,81 +1,87 @@
 <template>
     <div class="container">
         <form class="" role="form" enctype="multipart/form-data" @submit.prevent="validateUser">
-                <div class="margin-title line-bottom">
-                    <h2>Профиль</h2>
-                </div>
-                <div class="row" id="info-data">
-                    <div class="col-lg-4 col-md-4 col-xs-12">
-                        <div class="text-center" id="people">
-                            <img v-if="!form.photo" src="~@/assets/img/no-foto.jpg">
-                            <img v-else :src="form.photo">
-                        </div>
-                        <div class="text-center" id="file">
-                            <label>
-                                <input type="file" class="profile-img" @change="onFileChange">
-                                <span>Выберите файл</span>
-                            </label>
-                        </div>
+            <div class="margin-title line-bottom">
+                <h2>Профиль</h2>
+            </div>
+            <div class="row" id="info-data">
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="text-center" id="people">
+                        <img v-if="!form.photo" src="~@/assets/img/no-foto.jpg">
+                        <img v-else :src="form.photo">
                     </div>
-                    <div class="col-lg-8 col-md-8 col-xs-12">
-                        <div id="myTabContent" class="tab-content">
-                            <div class="form-group row">
-                                <label for="lastName" class="col-sm-3 control-label">Фамилия</label>
-                                <div class="col-sm-9">
-                                    <input v-model="form.last_name" type="text" id="lastName"  class="form-control" autofocus>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="firstName" class="col-sm-3 control-label">Имя</label>
-                                <div class="col-sm-9">
-                                    <input v-model="form.first_name" type="text" id="firstName"  class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="middleName" class="col-sm-3 control-label">Отчество</label>
-                                <div class="col-sm-9">
-                                    <input v-model="form.middle_name" type="text" id="middleName"  class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="phone" class="col-sm-3 control-label">Телефон</label>
-                                <div class="col-sm-9">
-                                    <input v-model="form.phone" type="tel" id="phone" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="email" class="col-sm-3 control-label">Емайл</label>
-                                <div class="col-sm-9">
-                                    <input v-model="form.email" type="email" id="email" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="birthDate" class="col-sm-3 control-label">Дата рождения</label>
-                                <div class="col-sm-9">
-                                    <input v-model="form.birthday" type="date" id="birthDate" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="control-label col-sm-3">Пол</label>
-                                <div class="col-sm-4">
-                                    <label class="radio-inline">
-                                        <input v-model="form.gender" type="radio" id="femaleRadio" value="Мужской">Мужской
-                                    </label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label class="radio-inline">
-                                        <input v-model="form.gender" type="radio" id="maleRadio" value="Женский">Женский
-                                    </label>
-                                </div>
-                             </div>
-                        </div>
+                    <div class="text-center" id="file">
+                        <label>
+                            <input type="file" class="profile-img" @change="onFileChange">
+                            <span>Выберите файл</span>
+                        </label>
                     </div>
                 </div>
-                <div class="form-group text-center">
-                    <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                <div class="col-lg-8 col-md-8 col-xs-12">
+                    <div id="myTabContent" class="tab-content">
+                        <div class="form-group row">
+                            <label for="lastName" class="col-sm-3 col-form-label">Фамилия</label>
+                            <div class="col-sm-9">
+                                <input v-model="form.last_name" type="text" id="lastName"  class="form-control" autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstName" class="col-sm-3 col-form-label">Имя</label>
+                            <div class="col-sm-9">
+                                <input v-model="form.first_name" type="text" id="firstName"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="middleName" class="col-sm-3 col-form-label">Отчество</label>
+                            <div class="col-sm-9">
+                                <input v-model="form.middle_name" type="text" id="middleName"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="phone" class="col-sm-3 col-form-label">Телефон</label>
+                            <div class="col-sm-9">
+                                <input v-model="form.phone" type="tel" id="phone" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-3 col-form-label">Емайл</label>
+                            <div class="col-sm-9">
+                                <input v-model="form.email" type="email" id="email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="birthDate" class="col-sm-3 col-form-label">Дата рождения</label>
+                            <div class="col-sm-9">
+                                <input v-model="form.birthday" type="date" id="birthDate" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3">Пол</label>
+                            <div class="col-sm-4">
+                                <label class="radio-inline col-form-label">
+                                    <input v-model="form.gender" type="radio" id="femaleRadio" value="Мужской">Мужской
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="radio-inline col-form-label">
+                                    <input v-model="form.gender" type="radio" id="maleRadio" value="Женский">Женский
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Категории работ</label>
+                            <div class="col-sm-9">
+                                <multiselect  tag="input" v-model="form.categories" :options="work_categories"  track-by="id" label="title" :limit="1" :limit-text="limitText" :searchable="false" :multiple="true" placeholder=""></multiselect>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="form-group text-center">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </div>
+            </div>
         </form>
 
         <div>
@@ -105,7 +111,7 @@
                 <div class="form-group text-center">
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </div>
-           </form>
+            </form>
         </div>
         <div v-if="role !== 'Исполитель'">
             <div class="line-bottom">
@@ -173,8 +179,7 @@
                 birthday: null,
                 photo: '',
                 description: '',
-                confirmed: false,
-                public_offer: false,
+                categories: [],
             },
             passwordForm: {
                 password: null,
@@ -203,10 +208,10 @@
                 this.$validator
                     .validateAll()
                     .then((response) => {
-                     if (response === true){
-                         this.savePassword();
-                     }
-                })
+                        if (response === true){
+                            this.savePassword();
+                        }
+                    })
             },
             onFileChange(e) {
                 let image = new Image();
@@ -217,18 +222,27 @@
                     this.form.photo = e.target.result;
                 };
                 reader.readAsDataURL(this.form.photo);
-            }
+            },
+            limitText (count) {
+                if (count === 1) {
+                    return `и ${count} другая категория`
+                } else
+                    return `и ${count} других категорий`;
+            },
         },
         computed: {
             ...mapGetters({
                 orders: "profile/orders",
                 requests: "profile/requests",
+                work_categories: "performers/categories",
             }),
         },
-            mounted() {
+        mounted() {
             this.$store.dispatch('profile/orders');
             this.$store.dispatch('profile/requests');
+            this.$store.dispatch('performers/allWorkCategories');
             this._user = this.user;
+            console.log(this.user);
             this.form = {
                 last_name: this._user.last_name,
                 first_name: this._user.first_name,
@@ -239,13 +253,12 @@
                 birthday: this._user.birthday,
                 photo: this._user.photo,
                 description: this._user.description,
-                confirmed: this._user.confirmed,
-                public_offer: this._user.public_offer,
+                categories: this._user.categories,
             };
         },
         created() {
             this.role = this.$ls.get('role');
-            console.log(this.role);
+            this.options = this.work_categories;
         }
     }
 </script>

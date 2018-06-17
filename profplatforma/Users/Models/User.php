@@ -5,6 +5,7 @@ namespace  ProfPlatforma\Users\Models;
 use App\Category;
 use App\Module;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use ProfPlatforma\Orders\Models\Order;
 use ProfPlatforma\Orders\Models\OrderRequest;
 use ProfPlatforma\Roles\Models\Role;
@@ -104,5 +105,9 @@ class User extends Authenticatable
         if (!$photo) return; else {
             return 'http://127.0.0.1:8000' . Storage::url($photo);
         }
+    }
+    public function  setPhotoAttribute($photo)
+    {
+        $this->attributes['photo'] = Image::make($photo)->resize(212, 212);
     }
 }
