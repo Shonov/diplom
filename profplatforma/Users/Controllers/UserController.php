@@ -34,10 +34,9 @@ class UserController extends Controller
 
         if ($user && $request->hasFile('photo')) {
             $image = $request->photo;
-            $image_resize = Image::make($image)->resize(212, 212);
-            $image_resize->store('public');
-//            Storage::put('\public\resize\\'. substr($image, 7), (string) $image_resize->resize(212, 212)->encode() );
-            $user->photo = $image_resize;
+//            $image_resize = Image::make($image)->resize(212, 212);
+            $image->store('public');
+            $user->photo = $image;
             $user->save();
 
         }
