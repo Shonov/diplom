@@ -14,7 +14,8 @@
                               <small>Фотография</small>
                            </label>
                            <div v-if="!photo">
-                              <input type="file" ref="file" name="file" id="file" @change="onFileChange">
+                              <input type="file" v-validate="'required|image'" name="Фотография" id="file" @change="onFileChange" >
+                              <span class="error">{{ errors.first('Фотография') }}</span>
                            </div>
                            <div v-else>
                               <img class="photo" :src="photo" />
@@ -28,19 +29,22 @@
                               <label class="text-secondary" for="lastName">
                                  <small>Фамилия</small>
                               </label>
-                              <input v-model="last_name" type="text" id="lastName" placeholder="Иванов" class="form-control form-control-lg rounded-0">
+                              <input v-model="last_name"  v-validate="'required'" name="Фамилия" type="text" id="lastName" placeholder="Иванов" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Фамилия') }">
+                              <span class="error">{{ errors.first('Фамилия') }}</span>
                            </div>
                            <div class="form-group col-lg-4 col-md-12 col-sm-12">
                               <label class="text-secondary" for="firstName">
                                  <small>Имя</small>
                               </label>
-                              <input v-model="first_name" type="text" id="firstName" placeholder="Иван" class="form-control form-control-lg rounded-0">
+                              <input v-model="first_name" v-validate="'required'" name="Имя" type="text" id="firstName" placeholder="Иван" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Имя') }">
+                              <span class="error">{{ errors.first('Имя') }}</span>
                            </div>
                            <div class="form-group col-lg-4 col-md-12 col-sm-12">
                               <label class="text-secondary" for="middleName">
                                  <small>Отчество</small>
                               </label>
-                              <input v-model="middle_name" type="text" id="middleName" placeholder="Иванович" class="form-control form-control-lg rounded-0">
+                              <input v-model="middle_name" v-validate="'required'" type="text" name="Отчество" id="middleName" placeholder="Иванович" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Отчество') }">
+                              <span class="error">{{ errors.first('Отчество') }}</span>
                            </div>
                         </div>
                         <div class="form-row">
@@ -48,13 +52,15 @@
                               <label class="text-secondary" for="phone">
                                  <small>Телефон</small>
                               </label>
-                              <input v-model="phone" type="text" id="phone" placeholder="+7(999)9999999" class="form-control form-control-lg rounded-0">
+                              <input v-model="phone" v-validate="'required'" type="tel" name="Телефон" id="phone" placeholder="+7(999)9999999" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Телефон') }">
+                              <span class="error">{{ errors.first('Телефон') }}</span>
                            </div>
                            <div class="form-group col-lg-4 col-md-12 col-sm-12">
                               <label class="text-secondary" for="email">
                                  <small>Почта</small>
                               </label>
-                              <input v-model="email" type="email" id="email" placeholder="ivan@mail.ru" class="form-control form-control-lg rounded-0">
+                              <input v-model="email" v-validate="'required|email'" type="email" id="email" name="Почта" placeholder="ivan@mail.ru" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Почта') }">
+                              <span class="error">{{ errors.first('Почта') }}</span>
                            </div>
                            <div class="form-group col-lg-4 col-md-12 col-sm-12">
                               <label class="text-secondary" for="birthDate">
@@ -80,13 +86,15 @@
                               <label class="text-secondary" for="password">
                                  <small>Пароль</small>
                               </label>
-                              <input v-model="password" type="password" name="password" id="password" placeholder="*******" class="form-control form-control-lg rounded-0">
+                              <input v-model="password" v-validate="'required'" type="password" name="Пароль" id="password" placeholder="*******" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Пароль') }">
+                              <span class="error">{{ errors.first('Пароль') }}</span>
                            </div>
                            <div class="form-group col-lg-6 col-md-12 col-sm-12">
                               <label class="text-secondary" for="password_confirmation">
                                  <small>Повтор пароля</small>
                               </label>
-                              <input v-model="password_confirmation" type="password" name="password_confirmation" id="password_confirmation" placeholder="********" class="form-control form-control-lg rounded-0">
+                              <input v-model="password_confirmation" v-validate="'required|confirmed:password'" type="password" name="Повтор пароля" id="password_confirmation" placeholder="********" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Повтор пароля') }">
+                              <span class="error">{{ errors.first('Повтор пароля') }}</span>
                            </div>
                         </div>
                         <div class="form-group mb-3">
@@ -114,9 +122,10 @@
                         </div>
                         <div class="form-group mb-3">
                            <label class="text-secondary" for="city"></label>
-                           <input v-model="public_offer" type="checkbox"> Даю согласие на обработку персональных данных
+                           <input v-model="public_offer" v-validate="'required'" data-vv-as=" "  name="public_offer" type="checkbox"  > Даю согласие на обработку персональных данных
+                           <span class="error">{{ errors.first('public_offer') }}</span>
                         </div>
-                        <button class="btn btn-lg btn-warning mb-4 w-100 rounded-0" type="submit">Зарегистрироваться</button>
+                        <button class="btn btn-lg btn-warning mb-4 w-100 rounded-0" :disabled="errors.any()" type="submit">Зарегистрироваться</button>
                      </form>
                   </div>
                </div>
@@ -152,7 +161,6 @@
                 types: ['(cities)'],
                 componentRestrictions: {country: "ru"},
             },
-            file:'',
             password: '',
             last_name: '',
             first_name: '',
@@ -174,11 +182,11 @@
         },
         methods: {
             onFileChange(e) {
-                // this.file = e.target.files || e.dataTransfer.files;
-                this.file = this.$refs.file.files[0];
+                let files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
                     return;
-                console.log(this.photo);
+                this.photo = files[0];
+                console.log(this.photo );
                 this.createImage(files[0]);
             },
             createImage(file) {
@@ -202,34 +210,39 @@
                 this.city = place.formatted_address;
             },
             register() {
-                let base = this.init_config.baseURI;
-                axios.post(base + '/api/register', {
-                    last_name: this.last_name,
-                    first_name: this.first_name,
-                    middle_name: this.middle_name,
-                    email: this.email,
-                    phone: this.phone,
-                    gender: this.gender,
-                    birthday: this.birthday,
-                    photo: this.photo,
-                    description: this.description,
-                    city: this.city,
-                    password: this.password,
-                    password_confirmation: this.password_confirmation,
-                    role: 'Исполнитель',
-                    categories: this.value,
-                    public_offer: this.public_offer,
-                }, {
-                    headers:{
-                        'Content-Type': 'multipart/form-data'
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        let formData = new FormData();
+                        formData.append('file',);
+                        let base = this.init_config.baseURI;
+                        axios.post(base + '/api/register', {
+                            last_name: this.last_name,
+                            first_name: this.first_name,
+                            middle_name: this.middle_name,
+                            email: this.email,
+                            phone: this.phone,
+                            gender: this.gender,
+                            birthday: this.birthday,
+                            photo: this.photo,
+                            description: this.description,
+                            city: this.city,
+                            password: this.password,
+                            password_confirmation: this.password_confirmation,
+                            role: 'Исполнитель',
+                            categories: this.value,
+                            public_offer: this.public_offer,
+                        }, {
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        }).then(
+                            response => {
+                                console.log("register info", response);
+                                location.reload();
+                            }
+                        )
                     }
-                }).then(
-                    response => {
-                        console.log("register info", response);
-                        location.reload();
-                    }
-                )
-
+                });
             }
         },
 

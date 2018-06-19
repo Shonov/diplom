@@ -3,7 +3,7 @@
         <div class="image"></div>
         <div class="container d-flex flex-column">
             <div class="row my-auto">
-                <div id="blur" class="col-lg-5 col-md-10 col-sm-12 mx-auto my-5 py-5">
+                <div id="blur" class="col-lg-5 col-md-8 col-sm-8 mx-auto my-5 py-5">
                     <div class="card">
                         <div class="card-header bg-transparent px-5">
                             <h2>Авторизация</h2>
@@ -14,15 +14,17 @@
                                     <label class="text-secondary" for="login">
                                         <small>Почта/Телефон</small>
                                     </label>
-                                    <input v-model="login"  class="form-control form-control-lg rounded-0" id="login" type="text" placeholder="Почта или телефон">
+                                    <input v-model="login" v-validate="'required'" name="Логин" class="form-control form-control-lg rounded-0" id="login" type="text" placeholder="Почта или телефон" :class="{'input': true, 'is-danger': errors.has('Пароль') }">
+                                    <span class="error">{{ errors.first('Логин') }}</span>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="text-secondary" for="password">
                                         <small>Пароль</small>
                                     </label>
-                                    <input v-model="password" class="form-control form-control-lg rounded-0" id="password" type="password" placeholder="Пароль">
+                                    <input v-model="password" v-validate="'required'" name="Пароль" class="form-control form-control-lg rounded-0" id="password" type="password" placeholder="Пароль" :class="{'input': true, 'is-danger': errors.has('Пароль') }">
+                                    <span class="error">{{ errors.first('Пароль') }}</span>
                                 </div>
-                                <button class="btn btn-lg btn-warning mb-4 w-100 rounded-0" type="submit">Войти</button>
+                                <button class="btn btn-lg btn-warning mb-4 w-100 rounded-0" :disabled="errors.any()" type="submit">Войти</button>
                             </form>
                         </div>
                     </div>
@@ -45,14 +47,13 @@
                 error: false
             }
         },
-        computed: {
-            is_disabled() {
-                // return this.errors
-            },
-        },
         methods: {
             sign_user_in() {
-                this.sign_in({'url': 'index', 'login': this.login, 'password': this.password});
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        this.sign_in({'url': 'index', 'login': this.login, 'password': this.password});
+                    }
+                });
             }
         }
     }
@@ -68,7 +69,7 @@
     }
     #blur {
         position: absolute;
-        top: 20%;
+        top: 12%;
         bottom: 0;
         left: 0;
         right: 0;

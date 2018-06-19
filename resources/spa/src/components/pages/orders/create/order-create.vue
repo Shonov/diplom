@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-order">
         <div class="container d-flex flex-column">
             <div class="row my-auto">
                 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 mx-auto my-5 py-5">
@@ -24,13 +24,15 @@
                                     <label class="text-secondary" for="title">
                                         <small>Заголовок</small>
                                     </label>
-                                    <input v-model="order.title" type="text" id="title" placeholder="Введите название" class="form-control form-control-lg rounded-0">
+                                    <input v-model="order.title" type="text" name="Заголовок" id="title" placeholder="Введите название" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Заголовок') }">
+                                    <span class="error">{{ errors.first('Заголовок') }}</span>
                                 </div>
                                 <div class="form-group">
                                     <label class="text-secondary" for="description">
                                         <small>Описание</small>
                                     </label>
-                                    <textarea v-model="order.description" rows="5" cols="15" id="description" placeholder="Опишите ваш заказ" class="form-control form-control-lg rounded-0"></textarea>
+                                    <textarea v-model="order.description" rows="5" cols="15" name="Описание" id="description" placeholder="Опишите ваш заказ" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Описание') }"></textarea>
+                                    <span class="error">{{ errors.first('Описание') }}</span>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-lg-4 col-md-12 col-sm-12">
@@ -94,7 +96,7 @@
                                         />
                                     </gmap-map>
                                 </div>
-                                <button class="btn btn-lg btn-warning mb-4 w-100 rounded-0" type="submit" @click="checkUser">Создать</button>
+                                <button class="btn btn-lg btn-warning mb-4 w-100 rounded-0" type="submit"  @click="checkUser">Создать</button>
                             </form>
                         </div>
                     </div>
@@ -369,8 +371,8 @@
                     this.visibleDate1 = false;
                     this.visibleDate2 = true;
                 } else {
-                    // this.order.start_date = '';
-                    // this.order.end_date = '';
+                    this.order.start_date = '';
+                    this.order.end_date = '';
                     this.visibleDate1 = false;
                     this.visibleDate2 = false;
                 }
@@ -392,8 +394,4 @@
         font-size: 2.5rem;
         color: red;
     }
-    /*#contactForm {*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*}*/
 </style>
