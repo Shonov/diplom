@@ -32,7 +32,7 @@
                      @filtered="onFiltered"
                      caption-top>
                 <template slot="table-caption" v-if="!role || role !== 'Исполнитель'">
-                    <router-link :to="{name: 'order-create'}">Создать заказ</router-link>
+                    <router-link :to="{name: 'order-create'}" class="create">Создать заказ</router-link>
                 </template>
                 <template slot="title" slot-scope="row">
                     <router-link :to="{name:'order-view', params: { id: row.item.id }}"> {{ row.item.title }}</router-link>
@@ -108,5 +108,8 @@
 <style>
     .order-table {
         margin-top: 50px;
+    }
+    .create {
+        padding-left: 13px;
     }
 </style>

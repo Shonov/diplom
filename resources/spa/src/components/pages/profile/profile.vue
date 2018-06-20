@@ -158,7 +158,9 @@
                 </thead>
                 <tbody>
                 <tr v-for="order in orders">
-                    <td>{{ order.title }}</td>
+                    <td>
+                        <router-link :to="{name: 'order-view', params: { id: order.id }}" >{{ order.title }}</router-link>
+                    </td>
                     <td>{{ order.description.substr(0, 50) }}...</td>
                     <td>{{ order.budget.interval }} руб.</td>
                     <td>{{ order.address }}</td>

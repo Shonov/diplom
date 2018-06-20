@@ -24,9 +24,9 @@ class UpdateOrderRequest extends FormRequest
     public function rules()
     {
         return [
-//            'title' => 'string|max:128',
-//            'description' => 'string|max:255',
-//            'is_submited' => 'boolean'
+            'title' => 'string|max:128',
+            'description' => 'string|max:255',
+            'is_submited' => 'boolean'
 //            'coordinates' => 'string|max:255',
 //            'time_period' => 'in: at any time, during the period, not later than',
 //            'date' => 'string|max:255',
