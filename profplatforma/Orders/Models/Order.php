@@ -25,6 +25,10 @@ class Order extends Model
         'user_id'
     ];
 
+    protected $with = [
+        'requests'
+    ];
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');

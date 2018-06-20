@@ -117,9 +117,9 @@
                 </div>
             </form>
         </div>
-        <div class="order-request-table" v-if="role !== 'Исполитель'">
+        <div class="order-request-table" v-if="role !== 'Заказчик'">
             <div class="line-bottom">
-                <h2>Активные заявки [{{orders.length}}]</h2>
+                <h2>Активные заявки [{{requests.length}}]</h2>
             </div>
             <table class="table">
                 <thead>
