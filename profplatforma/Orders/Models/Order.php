@@ -27,6 +27,10 @@ class Order extends Model
         'is_submited',
     ];
 
+    protected $with = [
+        'requests'
+    ];
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
