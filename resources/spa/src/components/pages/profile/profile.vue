@@ -200,10 +200,11 @@
                     id: this._user.id
                 });
             },
-            deleteRequest(id) {
-                this.$store.dispatch('orders/deleteRequest', {
+            async deleteRequest(id) {
+                await this.$store.dispatch('orders/deleteRequest', {
                     id: id
                 });
+                this.$store.dispatch('profile/requests');
             },
             saveUser() {
                 this.save({...this.form});

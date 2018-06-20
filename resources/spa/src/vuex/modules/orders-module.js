@@ -78,18 +78,18 @@ export default {
                 }
             );
         },
-            getBudget({state, rootGetters}) {
+        getBudget({state, rootGetters}) {
             return rootGetters.HTTP.get('api/getBudget').then(
                 response => {
                     state.budget_list = response.data;
                     return response.data;
                 }
-                ).catch(error => {
-                    console.log(error.response);
-                });
+            ).catch(error => {
+                console.log(error.response);
+            });
         },
         uploadImages({state, rootGetters}) {
-            return axios.post(`api/orders/upload`,{
+            return axios.post(`api/orders/upload`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'multipart/form-data',
@@ -108,7 +108,7 @@ export default {
                 response => {
                     let a = [];
                     if (JSON.parse(this.$ls.get('list')) === null)
-                        a=[];
+                        a = [];
                     else
                         a = JSON.parse(this.$ls.get('list'));
                     a.push(JSON.parse(this.$route.params.id));
@@ -119,13 +119,14 @@ export default {
                 });
         },
         deleteRequest({state, rootGetters}, {id}) {
-            rootGetters.HTTP.delete(`/api/orders/request/${id}`).then(
+            return rootGetters.HTTP.delete(`/api/orders/request/${id}`).then(
                 response => {
                     console.log(response);
+
                     // let a = this.$ls.get('list');
                     // delete a[this.$route.params.id];
                     // this.$ls.set('list', [] = response.data.order_id);
-                    this.showModal();
+                    // this.showModal();
                 });
         },
         getCustomer({state, rootGetters}, {id}) {
