@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $roles = ['Заказчик', 'Исполнитель', 'Администратор'];
+        for ($i = 0; $i < 3; $i++) {
+            DB::table('roles')->insert([
+                'title' => $roles[$i],
+            ]);
+        }
         // $this->call(UsersTableSeeder::class);
     }
 }

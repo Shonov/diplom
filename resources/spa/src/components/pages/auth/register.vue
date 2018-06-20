@@ -171,6 +171,7 @@
         },
         methods: {
             customFormatter(date) {
+                moment.locale('ru');
                 return moment(date).format('l');
             },
             limitText (count) {
@@ -210,7 +211,6 @@
                 });
             }
         },
-
     }
 </script>
 <style>
