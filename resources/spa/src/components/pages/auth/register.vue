@@ -51,7 +51,7 @@
                               <label class="text-secondary" for="birthDate">
                                  <small>Дата рождения</small>
                               </label>
-                              <input v-model="birthday" type="date" id="birthDate" class="form-control form-control-lg rounded-0">
+                              <datepicker v-model="birthday" :language="language" :format="customFormatter" placeholder="дд.мм.гггг"></datepicker>
                            </div>
                         </div>
                         <div class="form-group mb-3">
@@ -125,12 +125,16 @@
     import user from '@mixins/user';
     import Multiselect from 'vue-multiselect'
     import {mapGetters} from 'vuex';
+    import Datepicker from 'vuejs-datepicker';
+    import {ru} from 'vuejs-datepicker/dist/locale'
+    import moment from 'moment'
 
     export default {
         name: "registrer",
         mixin: [user],
         components: {
-            Multiselect
+            Multiselect,
+            Datepicker,
         },
         computed: {
             ...mapGetters({
@@ -141,6 +145,7 @@
             this.$store.dispatch('performers/allWorkCategories');
         },
         data: () => ({
+            language: ru,
             value: [],
             options_map: {
                 types: ['(cities)'],
@@ -157,7 +162,6 @@
             city: '',
             gender: null,
             birthday: null,
-            photo: '',
             description: '',
             confirmed: false,
             public_offer: 1,
@@ -166,24 +170,8 @@
             this.options = this.work_categories;
         },
         methods: {
-            onFileChange(e) {
-                let files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.photo = files[0];
-                console.log(this.photo );
-                this.createImage(files[0]);
-            },
-            createImage(file) {
-                let image = new Image();
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    this.photo = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            },
-            removeImage: function (e) {
-                this.photo = '';
+            customFormatter(date) {
+                return moment(date).format('l');
             },
             limitText (count) {
                 if (count === 1) {
@@ -206,7 +194,6 @@
                             phone: this.phone,
                             gender: this.gender,
                             birthday: this.birthday,
-                            photo: this.photo,
                             description: this.description,
                             city: this.city,
                             password: this.password,
@@ -216,8 +203,7 @@
                             public_offer: this.public_offer,
                         }).then(
                             response => {
-                                console.log("register info", response);
-                                location.reload();
+                                this.sign_in({'url': 'index', 'login': this.email, 'password': this.password});
                             }
                         )
                     }
@@ -262,5 +248,11 @@
       font-size: 1rem;
       border-radius: 0 !important;
       border: 1px solid #ced4da;
+   }
+   .vdp-datepicker input{
+      border: 1px solid #ced4da;
+      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
+      width: 100%;
    }
 </style>
