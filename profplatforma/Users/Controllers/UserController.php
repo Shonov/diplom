@@ -32,14 +32,14 @@ class UserController extends Controller
         $credentials['password'] = bcrypt($credentials['password']);
         $user = User::create($credentials);
 
-        if ($user && $request->hasFile('photo')) {
-            $image = $request->photo;
+//        if ($user && $request->hasFile('photo')) {
+//            $image = $request->photo;
 //            $image_resize = Image::make($image)->resize(212, 212);
-            $image->store('public');
-            $user->photo = $image;
-            $user->save();
+//            $image->store('public');
+//            $user->photo = $image;
+//            $user->save();
 
-        }
+//        }
 
         if($user &&  $role = $request->get('role')) {
             $role = DB::select("SELECT id FROM roles WHERE title='$role'");

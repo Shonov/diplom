@@ -9,21 +9,6 @@
                   </div>
                   <div class="card-block pt-4 px-5 pb-1">
                      <form id="user_register" @submit.prevent="register" method="post" enctype="multipart/form-data">
-                        <div class="form-group text-center">
-                           <label class="text-secondary text-left" for="photo">
-                              <small>Фотография</small>
-                           </label>
-                           <div v-if="!photo">
-                              <input type="file" v-validate="'required|image'" name="Фотография" id="file" @change="onFileChange" >
-                              <span class="error">{{ errors.first('Фотография') }}</span>
-                           </div>
-                           <div v-else>
-                              <img class="photo" :src="photo" />
-                              <div>
-                                 <button @click.prevent="removeImage" class="mt-3">Удалить</button>
-                              </div>
-                           </div>
-                        </div>
                         <div class="form-row">
                            <div class="form-group col-lg-4 col-md-12 col-sm-12">
                               <label class="text-secondary" for="lastName">
@@ -93,7 +78,7 @@
                               <label class="text-secondary" for="password_confirmation">
                                  <small>Повтор пароля</small>
                               </label>
-                              <input v-model="password_confirmation" v-validate="'required|confirmed:password'" type="password" name="Повтор пароля" id="password_confirmation" placeholder="********" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Повтор пароля') }">
+                              <input v-model="password_confirmation" v-validate="'required|confirmed:Пароль'" type="password" name="Повтор пароля" id="password_confirmation" placeholder="********" class="form-control form-control-lg rounded-0" :class="{'input': true, 'is-danger': errors.has('Повтор пароля') }">
                               <span class="error">{{ errors.first('Повтор пароля') }}</span>
                            </div>
                         </div>
@@ -212,8 +197,6 @@
             register() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        // let formData = new FormData();
-                        // formData.append('file',);
                         let base = this.init_config.baseURI;
                         axios.post(base + '/api/register', {
                             last_name: this.last_name,
@@ -231,10 +214,6 @@
                             role: 'Исполнитель',
                             categories: this.value,
                             public_offer: this.public_offer,
-                        }, {
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            }
                         }).then(
                             response => {
                                 console.log("register info", response);

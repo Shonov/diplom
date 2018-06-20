@@ -16,28 +16,31 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="right"><img src="~@/assets/img/right.png"/></div>
+                    <div class="col-lg-3 card-info">
+
                         <div class="service">
                             <div class="service-circle"><img src="~@/assets/img/pensil.png"/></div>
                             <h5>Создайте заказ</h5>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
                         <div class="right"><img src="~@/assets/img/right.png"/></div>
+                    </div>
+                    <div class="col-lg-3 card-info">
+
                         <div class="service">
                             <div class="service-circle"><img src="~@/assets/img/search.png"/></div>
                             <h5>Исполнители обратятся к вам</h5>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
                         <div class="right"><img src="~@/assets/img/right.png"/></div>
+                    </div>
+                    <div class="col-lg-3 card-info">
+
                         <div class="service">
                             <div class="service-circle"><img src="~@/assets/img/black.png"/></div>
                             <h5>За вами выбор лучшего</h5>
                         </div>
+                        <div class="right"><img src="~@/assets/img/right.png"/></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 card-info">
                         <div class="service">
                             <div class="service-circle"><img src="~@/assets/img/home.png"/></div>
                             <h5>Пора работать</h5>
@@ -48,26 +51,23 @@
         </section>
 
         <section id="advantages" class="section-padding advantages">
-            <div class="container">
-                <div class="row">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <h2>Преимущества</h2>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <h4>Lorem ipsum</h4>
-                            <h6>Lorem ipsum dolor sit amet</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="row col-lg-8">
+                        <div class="col-lg-4 mt-3">
+                            <img src="~@/assets/img/verified_user.png"/>
+                            <h4 class="mt-3">Мы проверяем исполнителей</h4>
                         </div>
-                        <div class="col-lg-4">
-                            <h4>Lorem ipsum</h4>
-                            <h6>Lorem ipsum dolor sit amet</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <div class="col-lg-4 mt-3">
+                            <img src="~@/assets/img/times.png"/>
+                            <h4 class="mt-3">Вы экономите время</h4>
                         </div>
-                        <div class="col-lg-4">
-                            <h4>Lorem ipsum</h4>
-                            <h6>Lorem ipsum dolor sit amet</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <div class="col-lg-4 mt-3">
+                            <img src="~@/assets/img/money.png"/>
+                            <h4 class="mt-3">Мы не берем за это коммиссию</h4>
                         </div>
                     </div>
                 </div>

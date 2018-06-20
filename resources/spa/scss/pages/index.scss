@@ -231,10 +231,20 @@ p {
   color: black;
   margin-top: 50px;
 }
+.card-info{
+  position: relative;
+  height: 220px;
+}
+.service{
+
+}
 .right{
   position: absolute;
-  padding-top: 25%;
-  right: -15%;
+  right: -30px;
+  bottom:20px;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /*--------------------------------*/
@@ -243,21 +253,26 @@ p {
 @media only screen and (min-width: 992px) and (max-width: 1200px) {}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .right {
-    position: absolute;
-    padding-top: 53%;
+
     transform: rotate(90deg);
-    right: 18%;
+
   };
 }
+//@media only screen and (min-width : 320px) and (max-width : 480px) {
+//  .right {
+//    position: absolute;
+//    padding-top: 50%;
+//    transform: rotate(90deg);
+//    right: 0%;
+//  };
+//}
+
 @media only screen and (max-width: 575px) {
   #home .intro-text form label{ width:25%;}
   #home .intro-text form a { width: 26%; }
   .multiselect { width:50%;}
   .right {
-    position: absolute;
-    padding-top: 70%;
     transform: rotate(90deg);
-    right: 2%;
   };
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -265,9 +280,7 @@ p {
   #home .intro-text form a { width:25%; }
   .multiselect { width:50%;}
   .right {
-    position: absolute;
-    padding-top: 70%;
     transform: rotate(90deg);
-    right: 8%;
+
   };
 }
