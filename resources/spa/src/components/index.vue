@@ -17,7 +17,6 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-3 card-info">
-
                         <div class="service">
                             <div class="service-circle"><img src="~@/assets/img/pensil.png"/></div>
                             <h5>Создайте заказ</h5>

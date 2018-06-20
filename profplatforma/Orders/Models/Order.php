@@ -22,7 +22,9 @@ class Order extends Model
         'end_date',
         'budget_scale_id',
         'archive',
-        'user_id'
+        'user_id',
+        'id_request',
+        'is_submited',
     ];
 
     public function author()

@@ -28,9 +28,9 @@ class OrdersService
 
     public function update(Order $order, $values)
     {
-        if ($order->author->id == Auth::user()->id) {
+//        if ($order->author->id == Auth::user()->id) {
             return $order->update($values);
-        }
+//        }
     }
 
     public function delete(Order $order)

@@ -41,7 +41,6 @@ Route::group(['middleware' => 'auth:api', 'prefix' => '/orders', 'namespace' => 
     Route::delete('/{order}', 'OrderController@delete');
     Route::get('/', 'OrderController@getAll');
     Route::post('/upload',  ['as'=>'uploadPhoto', 'uses'=>'OrderController@upload']);
-
 });
 Route::post('/orders/createOrderRequest', 'ProfPlatforma\Orders\Controllers\OrderRequestController@create');
 Route::delete('/orders/request/{id}', 'ProfPlatforma\Orders\Controllers\OrderRequestController@destroy');
