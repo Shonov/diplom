@@ -59,7 +59,7 @@
     }
 </script>
 
-<style lang="css">
+<style>
     .image {
         min-height: 100vh;
         background: url('~@/assets/img/city.jpg') no-repeat center center;

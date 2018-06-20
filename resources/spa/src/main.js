@@ -13,7 +13,7 @@ import user_mixin from './mixins/user'
 import router_mixin from './mixins/router'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
-import VueLocalStorage from "vue-localstorage/src/VueLocalStorage";
+import VueLocalStorage from "vue-localstorage";
 
 import VeeValidate, { Validator } from 'vee-validate';
 import ru from 'vee-validate/dist/locale/ru';

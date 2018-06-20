@@ -212,8 +212,8 @@
             register() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        let formData = new FormData();
-                        formData.append('file',);
+                        // let formData = new FormData();
+                        // formData.append('file',);
                         let base = this.init_config.baseURI;
                         axios.post(base + '/api/register', {
                             last_name: this.last_name,

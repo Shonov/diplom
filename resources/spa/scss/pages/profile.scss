@@ -5,7 +5,7 @@
 }
 #file {
   input[type=file] {
-    display: none; /* Обязательно скрываем настоящий Input File */
+    display: none;
   }
   span {
     text-decoration: underline;
