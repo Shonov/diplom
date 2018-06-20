@@ -20,15 +20,15 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-//        DB::table('users')->insert([
-//            'last_name' => 'Иванов',
-//            'first_name' => 'Иван',
-//            'middle_name' => 'Иванович',
-//            'phone' => '+7(988)5886912',
-//            'email' => 'ivan12@mail.ru',
-//            'city' => 'Rostov',
-//            'password' => bcrypt('vfkmdbyf'),
-//        ]);
+        DB::table('users')->insert([
+            'last_name' => 'Иванов',
+            'first_name' => 'Иван',
+            'middle_name' => 'Иванович',
+            'phone' => '+7(988)5886912',
+            'email' => 'ivan12@mail.ru',
+            'city' => 'Rostov',
+            'password' => bcrypt('vfkmdbyf'),
+        ]);
         $user = User::all()->last();
         for ($i = 0; $i < 15; $i++) {
             [DB::table('orders')->insert([
