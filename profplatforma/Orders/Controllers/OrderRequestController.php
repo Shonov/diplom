@@ -18,9 +18,8 @@ class OrderRequestController extends Controller
         return $orderRequest->id;
     }
 
-    public function destroy($request)
+    public function destroy(Request $request, $id)
     {
-        dd($request);
         return [
             'status' => OrderRequest::destroy($id)
         ];

@@ -22,19 +22,20 @@
                         <div class="form-group row">
                             <label for="lastName" class="col-sm-3 col-form-label">Фамилия</label>
                             <div class="col-sm-9">
-                                <input v-model="form.last_name" type="text" id="lastName"  class="form-control" autofocus>
+                                <input v-model="form.last_name" type="text" id="lastName" class="form-control"
+                                       autofocus>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="firstName" class="col-sm-3 col-form-label">Имя</label>
                             <div class="col-sm-9">
-                                <input v-model="form.first_name" type="text" id="firstName"  class="form-control">
+                                <input v-model="form.first_name" type="text" id="firstName" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="middleName" class="col-sm-3 col-form-label">Отчество</label>
                             <div class="col-sm-9">
-                                <input v-model="form.middle_name" type="text" id="middleName"  class="form-control">
+                                <input v-model="form.middle_name" type="text" id="middleName" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -71,7 +72,9 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Категории работ</label>
                             <div class="col-sm-9">
-                                <multiselect  tag="input" v-model="form.categories" :options="work_categories"  track-by="id" label="title" :limit="1" :limit-text="limitText" :searchable="false" :multiple="true" placeholder=""></multiselect>
+                                <multiselect tag="input" v-model="form.categories" :options="work_categories"
+                                             track-by="id" label="title" :limit="1" :limit-text="limitText"
+                                             :searchable="false" :multiple="true" placeholder=""></multiselect>
                             </div>
                         </div>
                     </div>
@@ -98,11 +101,14 @@
                 <div class="form-row justify-content-center">
                     <div class="col-md-6 mb-3">
                         <label for="password">Новый пароль</label>
-                        <input v-model="passwordForm.password" v-validate="'required'" data-vv-as="Пароль" type="password" name="password" id="password"  class="form-control" placeholder="Пароль">
+                        <input v-model="passwordForm.password" v-validate="'required'" data-vv-as="Пароль"
+                               type="password" name="password" id="password" class="form-control" placeholder="Пароль">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="password_confirmation">Повтор пароля</label>
-                        <input v-model="passwordForm.password_confirmation"  v-validate="'required|confirmed:password'" data-vv-as="Повтор пароля" type="password" name="password_confirmation" id="password_confirmation"  class="form-control" placeholder="Подтвердите пароль">
+                        <input v-model="passwordForm.password_confirmation" v-validate="'required|confirmed:password'"
+                               data-vv-as="Повтор пароля" type="password" name="password_confirmation"
+                               id="password_confirmation" class="form-control" placeholder="Подтвердите пароль">
                     </div>
                 </div>
 
@@ -111,7 +117,7 @@
                 </div>
             </form>
         </div>
-        <div v-if="role !== 'Исполитель'">
+        <div class="order-request-table" v-if="role !== 'Исполитель'">
             <div class="line-bottom">
                 <h2>Активные заявки [{{orders.length}}]</h2>
             </div>
@@ -130,7 +136,9 @@
                     <td>{{ request.id }}</td>
                     <td>{{ request.user_id }}</td>
                     <td>{{ request.status }}</td>
-                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-danger" @click="deleteRequest(request.id)">Удалить</button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -192,6 +200,11 @@
                     id: this._user.id
                 });
             },
+            deleteRequest(id) {
+                this.$store.dispatch('orders/deleteRequest', {
+                    id: id
+                });
+            },
             saveUser() {
                 this.save({...this.form});
             },
@@ -206,7 +219,7 @@
                 this.$validator
                     .validateAll()
                     .then((response) => {
-                        if (response === true){
+                        if (response === true) {
                             this.savePassword();
                         }
                     })
@@ -221,7 +234,7 @@
                 };
                 reader.readAsDataURL(this.form.photo);
             },
-            limitText (count) {
+            limitText(count) {
                 if (count === 1) {
                     return `и ${count} другая категория`
                 } else
