@@ -56,10 +56,10 @@ class OrderController extends Controller
      *  "status": "true"
      *}
      */
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function update(Request $request, Order $order)
     {
         return [
-            'status' => $this->ordersService->update($order, $request->validated())
+            'status' => $this->ordersService->update($order, $request->all())
         ];
     }
 
