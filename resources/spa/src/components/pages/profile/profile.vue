@@ -77,10 +77,8 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group text-center">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                </div>
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
             </div>
         </form>
 
@@ -108,7 +106,7 @@
                     </div>
                 </div>
 
-                <div class="form-group text-center">
+                <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </div>
             </form>
