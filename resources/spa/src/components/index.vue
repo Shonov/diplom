@@ -125,7 +125,6 @@
         name: "index",
         created() {
             this.role = this.$ls.get('role', false);
-            console.log(this.role);
         }
     }
 </script>

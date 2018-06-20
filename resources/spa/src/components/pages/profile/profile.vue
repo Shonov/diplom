@@ -242,7 +242,6 @@
             this.$store.dispatch('profile/requests');
             this.$store.dispatch('performers/allWorkCategories');
             this._user = this.user;
-            console.log(this.user);
             this.form = {
                 last_name: this._user.last_name,
                 first_name: this._user.first_name,

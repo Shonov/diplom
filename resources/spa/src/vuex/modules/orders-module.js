@@ -14,7 +14,7 @@ export default {
                 response => {
                     delete(response.data['count']);
                     state.list = response.data.data;
-                    console.log('Orders list', response);
+                    // console.log('Orders list', response);
                 }
             ).catch(error => {
                 // console.log('Orders loading...', error.response);
@@ -23,7 +23,7 @@ export default {
         update({state, rootGetters}, {params, id}) {
             rootGetters.HTTP.put(`api/orders/${id}`, params).then(
                 response => {
-                    console.log('Orders.Update', response);
+                    // console.log('Orders.Update', response);
                     router.push({name: 'orders-view'});
                 }
             ).catch(error => {
@@ -34,7 +34,7 @@ export default {
             console.log('params', params);
             rootGetters.HTTP.post(`api/orders`, params).then(
                 response => {
-                    console.log('Orders.Create', response);
+                    // console.log('Orders.Create', response);
                     router.push({name: 'orders-views'});
                 }
             ).catch(error => {
@@ -44,7 +44,7 @@ export default {
         delete({state, rootGetters}, {id}) {
             rootGetters.HTTP.delete(`api/orders/${id}`).then(
                 response => {
-                    console.log('Orders.Delete', response);
+                    // console.log('Orders.Delete', response);
                     router.push({name: 'orders-view'});
                 }
             ).catch(error => {
@@ -54,7 +54,7 @@ export default {
         changeStatus({state, rootGetters}, {params, id}) {
             rootGetters.HTTP.put(`api/orders/${id}`, params).then(
                 response => {
-                    console.log('Orders.ChangeStatus', response);
+                    // console.log('Orders.ChangeStatus', response);
                 }
             ).catch(error => {
                 console.log(error.response);
