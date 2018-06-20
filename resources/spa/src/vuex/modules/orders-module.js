@@ -21,10 +21,9 @@ export default {
             });
         },
         update({state, rootGetters}, {params, id}) {
-            rootGetters.HTTP.put(`api/orders/${id}`, params).then(
+            return rootGetters.HTTP.put(`api/orders/${id}`, params).then(
                 response => {
-                    // console.log('Orders.Update', response);
-                    router.push({name: 'orders-view'});
+                    console.log('Orders.Update', response);
                 }
             ).catch(error => {
                 console.log(error.response);

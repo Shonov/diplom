@@ -34,47 +34,59 @@
                     <h3>{{ order.title }}</h3>
                     <table class="table table-th-block">
                         <tbody>
-                            <tr>
-                                <td class="active">Город</td>
-                                <td>{{ order.address }}</td>
-                            </tr>
-                            <tr>
-                                <td class="active">Когда начать работы</td>
-                                <td>{{ order.time_period }}</td>
-                            </tr>
-                            <tr>
-                                <td class="active">Бюджет</td>
-                                <td>{{ order.budget_scale_id }} руб.</td>
-                            </tr>
-                            <tr>
-                                <td class="active">Объем работ</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="active">Описание заказа</td>
-                                <td>{{ order.description }}</td>
-                            </tr>
-                            <tr>
-                                <td class="active">Категория</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="active">Пользователь, разместивший заказ</td>
-                                <td>
-                                    <router-link :to="{name: 'customer', params: { id: order.author.id }}"> {{ order.author.first_name }}  {{ order.author.last_name }}</router-link>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td class="active">Город</td>
+                            <td>{{ order.address }}</td>
+                        </tr>
+                        <tr>
+                            <td class="active">Когда начать работы</td>
+                            <td>{{ order.time_period }}</td>
+                        </tr>
+                        <tr>
+                            <td class="active">Бюджет</td>
+                            <td>{{ order.budget_scale_id }} руб.</td>
+                        </tr>
+                        <tr>
+                            <td class="active">Объем работ</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="active">Описание заказа</td>
+                            <td>{{ order.description }}</td>
+                        </tr>
+                        <tr>
+                            <td class="active">Категория</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="active">Пользователь, разместивший заказ</td>
+                            <td>
+                                <router-link :to="{name: 'customer', params: { id: order.author.id }}"> {{
+                                    order.author.first_name }} {{ order.author.last_name }}
+                                </router-link>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
-                    <div class="row justify-content-center">
-                        <template v-if="role === 'Исполнитель'">
-                            <a href="" v-if="flag === false" @click.prevent="createRequest" class="row justify-content-center order-request"> Подать заявку на выполнение заказа</a>
-                            <a href="" v-if="flag" @click.prevent="deleteOrderRequest" class="row justify-content-center order-request"> Удалить заявку на выполнение заказа</a>
-                        </template>
-                        <template v-else>
+                    <template v-if="!order.is_submited">
+                        <div class="row justify-content-center">
+                            <template v-if="role === 'Исполнитель'">
+                                <a href="" v-if="flag === false" @click.prevent="createRequest"
+                                   class="row justify-content-center order-request"> Подать заявку на выполнение
+                                    заказа</a>
+                                <a href="" v-if="flag" @click.prevent="deleteOrderRequest"
+                                   class="row justify-content-center order-request"> Удалить заявку на выполнение
+                                    заказа</a>
+                            </template>
+                            <template v-else>
 
-                        </template>
-                    </div>
+                            </template>
+                        </div>
+                    </template>
+
+                    <template v-if="order.is_submited">
+                        <h3 class="text-center">Заказчик нашел исполнителя</h3>
+                    </template>
 
                     <div>
                         <b-modal ref="myModal" hide-footer title="Ура!">
@@ -85,9 +97,35 @@
                         </b-modal>
                     </div>
 
+                    <template v-if="order.user_id == user.id && order.requests.length !== 0 && !order.is_submited">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Заказ</th>
+                                <th scope="col">Автор</th>
+                                <th scope="col">Статус</th>
+                                <th scope="col">Действия</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="request in order.requests">
+                                <td>{{ request.id }}</td>
+                                <td>{{ request.user_id }}</td>
+                                <td>{{ request.status }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success" @click="updateOrder(order.id)">
+                                        Подтвердить
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </template>
+
                     <label class="col-sm-3 control-label"></label>
                     <div class="col-sm-12">
-                        <gmap-map  class="form-control maps maps-order" :zoom="zoom"  :center="center">
+                        <gmap-map class="form-control maps maps-order" :zoom="zoom" :center="center">
                             <GmapMarker v-for="(marker, index) in markers"
                                         :key="index"
                                         :position="marker.position"
@@ -105,7 +143,7 @@
 
     export default {
         name: "order-view",
-        props:['position'],
+        props: ['position'],
         data: () => ({
             flag: false,
             list: [],
@@ -116,9 +154,9 @@
                 title: '',
                 description: '',
                 coordinates: '',
-                address:'',
+                address: '',
                 date: '',
-                time_period:'',
+                time_period: '',
                 budget_scale_id: '',
                 author: {
                     id: null,
@@ -127,7 +165,7 @@
                 }
             },
             zoom: 16,
-            center: { lat: 0, lng: 0 },
+            center: {lat: 0, lng: 0},
             markers: [{
                 position: {
                     lat: 0,
@@ -152,28 +190,40 @@
             this.role = this.$ls.get('role');
         },
         watch: {
-            list:  function () {
+            list: function () {
                 if (this.list) {
 
                     console.log(this.list);
-                    console.log('check',this.list.indexOf(JSON.parse(this.$route.params.id)));
+                    console.log('check', this.list.indexOf(JSON.parse(this.$route.params.id)));
                     if (this.list.indexOf(JSON.parse(this.$route.params.id)) != -1) {
                         this.flag = true;
-                    } else this. flag = false;
+                    } else this.flag = false;
                 }
             }
         },
         methods: {
-            showModal () {
+            async updateOrder(id) {
+                await this.$store.dispatch('orders/update', {
+                    params: {
+                        is_submited: true,
+                    },
+                    id: id
+                });
+                let order = await this.$store.dispatch('orders/getOrder', {
+                    id: this.$route.params.id
+                });
+                this.order = order.order;
+            },
+            showModal() {
                 this.$refs.myModal.show()
             },
-            hideModal () {
+            hideModal() {
                 this.$refs.myModal.hide()
             },
-            onSlideStart (slide) {
+            onSlideStart(slide) {
                 this.sliding = true
             },
-            onSlideEnd (slide) {
+            onSlideEnd(slide) {
                 this.sliding = false
             },
             createRequest() {
@@ -185,7 +235,7 @@
                     response => {
                         let a = [];
                         if (JSON.parse(this.$ls.get('list')) === null)
-                            a=[];
+                            a = [];
                         else
                             a = JSON.parse(this.$ls.get('list'));
                         console.log('a', a);
@@ -197,12 +247,12 @@
                     });
             },
             deleteOrderRequest() {
-              // this.$store.dispatch('orders/request/:id', {
-              //     // id: ,
-              // }).then(
-              //     response => {
-              //     console.log("DELETE");
-              // })
+                // this.$store.dispatch('orders/request/:id', {
+                //     // id: ,
+                // }).then(
+                //     response => {
+                //     console.log("DELETE");
+                // })
             },
         }
     }
@@ -226,9 +276,11 @@
     table .active {
         background-color: #f2f2f2;
     }
+
     .maps-order {
         margin-top: 30px;
     }
+
     .order-request {
         margin-top: 10px;
         font-size: 20px;
