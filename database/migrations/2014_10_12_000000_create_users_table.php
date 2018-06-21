@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->boolean('confirmed')->nullable();
             $table->date('birthday')->nullable();
             $table->string('description')->nullable();
-            $table->string('city');
+            $table->string('city')->nullable();
             $table->string('public_offer')->nullable();
 //            $table->addColumn('gender_type','gender');
 //            $table->date('birthday')->nullable();

@@ -7,10 +7,12 @@
                 <b-collapse is-nav id="nav_collapse" class="justify-content-center">
                     <b-nav class="navbar-nav" v-if="isLogged">
                         <!--<b-nav-item :to="{name: 'main'}">Главная</b-nav-item>-->
-                        <b-nav-item :to="{name: 'orders-views'}" >Заказы</b-nav-item>
-                        <!--<template v-if="role !== 'Исполнитель'">-->
+                        <template v-if="role !== 'Заказчик'">
+                            <b-nav-item :to="{name: 'orders-views'}" >Заказы</b-nav-item>
+                        </template>
+                            <template v-if="role !== 'Исполнитель'">
                             <b-nav-item :to="{name: 'performers'}">Исполнители</b-nav-item>
-                        <!--</template>-->
+                        </template>
                     </b-nav>
                     <b-nav class="navbar-nav ml-auto">
                         <template v-if="!isLogged">

@@ -31,7 +31,7 @@ class CreateUserRequest extends FormRequest
             'first_name' => 'string|max:255',
             'last_name' => 'string|max:255',
             'middle_name' => 'string|nullable|max:255',
-            'city' => 'required|string',
+            'city' => 'string',
             'gender' => 'in:Мужской,Женский,',
             'birthday' => 'date',
             'categories' => 'array',

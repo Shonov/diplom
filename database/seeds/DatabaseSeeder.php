@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
             DB::table('budget_scale')->insert(['interval' => $value]);
         }
 
-        $roles = ['Заказчик', 'Исполнитель', 'Администратор'];
+        $roles = ['Исполнитель', 'Заказчик',  'Администратор'];
         for ($i = 0; $i < 3; $i++) {
             DB::table('roles')->insert([
                 'title' => $roles[$i],
@@ -68,16 +68,39 @@ class DatabaseSeeder extends Seeder
         }
 
         DB::table('users')->insert([
+            'last_name' => 'Шонов',
+            'first_name' => 'Виталий',
+            'middle_name' => 'Витальевич',
+            'phone' => '+7(988)5886912',
+            'email' => 'v-shonov@mail.ru',
+            'city' => 'Rostov',
+            'password' => bcrypt('vfkmdbyf'),
+        ]);
+        $performer = User::all()->first();
+        DB::table('users_work_categories')->insert([
+            'user_id' => 1,
+            'category_id' => 1,
+        ]);
+        DB::table('users_work_categories')->insert([
+            'user_id' => 1,
+            'category_id' => 2,
+        ]);
+        $role = DB::select("SELECT id FROM roles WHERE title='Исполнитель'");
+        DB::table('user_roles')->insert(['user_id' => $performer->id, 'role_id' => $role[0]->id]);
+
+        DB::table('users')->insert([
             'last_name' => 'Иванов',
             'first_name' => 'Иван',
             'middle_name' => 'Иванович',
-            'phone' => '+7(988)5886912',
-            'email' => 'ivan12@mail.ru',
+            'phone' => '+7(918)5739352',
+            'email' => 'ivanov@mail.ru',
             'city' => 'Rostov',
             'password' => bcrypt('vfkmdbyf'),
         ]);
 
-        $user = User::all()->last();
+        $customer = User::all()->last();
+        $role = DB::select("SELECT id FROM roles WHERE title='Заказчик'");
+        DB::table('user_roles')->insert(['user_id' => $customer->id, 'role_id' => $role[0]->id]);
 
         for ($i = 0; $i < 15; $i++) {
             [DB::table('orders')->insert([
@@ -88,7 +111,7 @@ class DatabaseSeeder extends Seeder
                 'coordinates' => '55 55',
                 'budget_scale_id' => 1,
                 'time_period' => 'В любое время',
-                'user_id' => $user->id,
+                'user_id' => $customer->id,
             ])];
         }
 

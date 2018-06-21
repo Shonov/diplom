@@ -107,11 +107,11 @@ router.beforeEach((to, from, next) => {
                     next(false);
                 } else next();
             }
-            // else if (role === 'Заказчик') {
-                // if (to.name === "orders-views") {
-                    // next(false);
-                // } else next();
-            // } else
+            else if (role === 'Заказчик') {
+                if (to.name === "orders-views") {
+                    next(false);
+                } else next();
+            } else
             next();
         } else {
             Vue.ls.remove('token');

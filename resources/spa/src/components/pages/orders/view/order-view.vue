@@ -61,9 +61,9 @@
                         <tr>
                             <td class="active">Пользователь, разместивший заказ</td>
                             <td>
-                                <router-link :to="{name: 'customer', params: { id: order.author.id }}"> {{
-                                    order.author.first_name }} {{ order.author.last_name }}
-                                </router-link>
+                                <!--<router-link :to="{name: 'customer', params: { id: order.author.id }}"> {{-->
+                                    {{ order.author.first_name }} {{ order.author.last_name }}
+                                <!--</router-link>-->
                             </td>
                         </tr>
                         </tbody>

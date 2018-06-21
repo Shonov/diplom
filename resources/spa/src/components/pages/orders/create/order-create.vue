@@ -117,7 +117,7 @@
                         </div>
                         <div class="card-block pt-4 px-5 pb-1">
                             <p class="text-center">Для продолжения<a href @click.prevent="openRegister" class="text-right"> зарегистрируйтесь </a>или войдите на сайт.</p>
-                            <form @submit.prevent method="post">
+                            <form @submit.prevent="customersOrder" method="post">
                                 <div class="form-group">
                                     <label class="text-secondary" for="login">
                                         <small>Почта/Телефон</small>
@@ -285,17 +285,6 @@
         },
         methods: {
             create() {
-                // let a = [];
-                // this.order.photos.forEach(function (photo) {
-                //     let reader = new FileReader();
-                //     reader.onload = function(event) {
-                //         a.push(event.target.result);
-                //     };
-                //     reader.readAsDataURL(photo);
-                // });
-                // this.order.photos = a;
-                // console.log('mas',this.order.photos);
-
                 this.order.user_id = this.user.id;
                 this.$store.dispatch('orders/create', {params: this.order}).then(
                     responce => {
@@ -306,7 +295,7 @@
             customersOrder() {
                 let base = this.init_config.baseURI;
                 if (this.registration){
-                    this.sign_in({'url': 'orders', 'login': this.user.login, 'password': this.user.password});
+                    this.sign_in({'url': 'orders', 'login': this.sign.login, 'password': this.sign.password});
                 } else {
                     axios.post(base + '/api/register', {
                         last_name: this.user.last_name,
